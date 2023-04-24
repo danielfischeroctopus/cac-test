@@ -18,6 +18,8 @@ step "hello-world-script-step" {
             acquisition_location = "Server"
             feed = "octopus-server-built-in"
             package_id = "Octopus.Client"
+            
+            # comment
             properties = {
                 Extract = "True"
                 Purpose = ""
