@@ -1,3 +1,4 @@
+#test
 step "hello-world-script-step" {
     name = "Hello, World! Script Step"
     properties = {
