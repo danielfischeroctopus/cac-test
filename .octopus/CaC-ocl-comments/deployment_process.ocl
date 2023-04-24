@@ -13,5 +13,16 @@ step "hello-world-script-step" {
             Octopus.Action.Script.Syntax = "PowerShell"
         }
         worker_pool_variable = ""
+
+        packages "Octopus.Client" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "Octopus.Client"
+            properties = {
+                Extract = "True"
+                Purpose = ""
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
