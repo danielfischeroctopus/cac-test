@@ -6,6 +6,7 @@ step "hello-world-script-step" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = "Write-Host \"Hello, World!\""
@@ -24,5 +25,17 @@ step "hello-world-script-step" {
                 SelectionMode = "immediate"
             }
         }
+    }
+}
+
+step "check-deployment-status" {
+    name = "Check Deployment Status"
+
+    action {
+        properties = {
+            Octopus.Action.Template.Id = "ActionTemplates-2104"
+            Octopus.Action.Template.Version = "0"
+        }
+        worker_pool = "hosted-ubuntu"
     }
 }
