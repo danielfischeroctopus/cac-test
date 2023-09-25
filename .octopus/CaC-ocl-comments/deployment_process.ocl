@@ -39,3 +39,19 @@ step "check-deployment-status" {
         worker_pool = "hosted-ubuntu"
     }
 }
+
+step "cac-template" {
+    name = "CaC Template"
+    properties = {
+        Octopus.Action.TargetRoles = "Azure Ubuntu VM"
+    }
+
+    action {
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Template.Id = "ActionTemplates-2662"
+            Octopus.Action.Template.Version = "0"
+        }
+        worker_pool_variable = ""
+    }
+}
