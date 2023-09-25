@@ -8,7 +8,7 @@ step "cac-template" {
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Template.Id = "ActionTemplates-2662"
-            Octopus.Action.Template.Version = "1"
+            Octopus.Action.Template.Version = "2"
         }
         worker_pool_variable = ""
     }
