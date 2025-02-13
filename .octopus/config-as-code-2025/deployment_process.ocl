@@ -11,6 +11,24 @@ step "run-a-script" {
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Host "Sensitive Variable is below:"
                 Write-Host #{secret}
+                
+                
+                # Define an array of strings with the varibales you want to decrypt
+                $VariableArray = @('#{secret}')
+                
+                # Iterate through each string in the array using a foreach loop
+                foreach ($VariableToDecrypt in $VariableArray){
+                  try {
+                    $base64password = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($OctopusParameters[$VariableToDecrypt]))
+                    Write-Host "The base64 encoded variable is $VariableToDecrypt : $base64password"
+                    Write-Host "Run the following PS script on your local machine to decode: `n[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('$base64password'))"
+                  } catch {
+                    Write-Host "*********************************************************************************************"
+                    Write-Host "The base64 encoded variable is $VariableToDecrypt : $base64password"
+                     Write-Host "An error occurred processing the decryption script"
+                  }
+                  Write-Host "----------------------------------------------------------------------------------------------"
+                }
                 EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
