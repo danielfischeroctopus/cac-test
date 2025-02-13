@@ -10,7 +10,7 @@ step "run-a-script" {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Host "Sensitive Variable is below:"
-                Write-Host #{secret}
+                Write-Host #{secret}2
                 EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
