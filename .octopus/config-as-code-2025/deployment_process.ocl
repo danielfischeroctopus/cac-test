@@ -1,0 +1,21 @@
+step "run-a-script" {
+    name = "Run a Script"
+    properties = {
+        Octopus.Action.TargetRoles = "azure"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                Write-Host "Sensitive Variable is below:"
+                Write-Host #{secret}
+                EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool_variable = ""
+    }
+}

@@ -1,0 +1,3 @@
+variable "Normal Variable" {
+    value "Hello, World!" {}
+}
